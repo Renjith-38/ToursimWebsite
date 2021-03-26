@@ -234,18 +234,3 @@ form .indicator span.active:before{
 .indicator span.strong:before{
   background-color: #23ad5c;
 }
-form .text{
-  font-size: 20px;
-  font-weight: 500;
-  display: none;
-  margin-bottom: -10px;
-}
-form .text.weak{
-  color: #ff4757;
-}
-form .text.medium{
-  color: orange;
-}
-form .text.strong{
-  color: #23ad5c;
-}
