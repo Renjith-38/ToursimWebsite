@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <title>Kerala Tourism</title>
 </head>
-<body background="./districts/images/bg.jpg">
+<body background="./images/background.jpg">
     <!-- navbar start -->    
   <nav class="navbar navbar-expand-lg shadow p-3 mb-5 bg-transapernt rounded" id="grad"> 
         <div class="container-fluid">
@@ -35,14 +35,14 @@
     </nav>
     <!-- navbar end -->
     <!-- Signup form start -->
-    <form class="form rounded-lg bg-gradient-dark">
+    <form class="form rounded-lg bg-gradient-dark" action="./validation.html">
         <div class="form-group col-3 mb-2" style="width: 60%;">
           <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          <input type="email" class="form-control" required id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
         </div>
         <div class="form-group col-3 mb-2" style="width: 60%;">
           <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          <input type="password" required class="form-control" id="exampleInputPassword1" placeholder="Password">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>

@@ -11,7 +11,7 @@
     <title>Kerala Tourism</title>
     <script src="./script.js"></script>
 </head>
-<body background="./images/background.jpg">
+<body background="./districts/images/bg.jpg">
     <!-- navbar start -->    
   <nav class="navbar navbar-expand-lg shadow p-3 mb-5 bg-transapernt rounded" id="grad"> 
         <div class="container-fluid">
@@ -38,14 +38,14 @@
     <!-- Signup form start -->
     <div class="row">
     <div class="col-lg-8">
-    <form class="form rounded-lg bg-gradient-dark" action="./validation.html" onsubmit="return validation();" style="padding: 10px;">
+    <form class="form rounded-lg bg-gradient-dark" action="./validation.html" style="padding: 10px;">
         <div class="form-group col-3 mb-2" style="width: 90%;">
           <label for="exampleInputEmail1">Email address</label>
           <input type="email" required class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
         </div>
         <div class="form-group col-3 mb-2" style="width: 90%;">
           <label for="exampleInputPassword1">Password</label>
-          <input type="password" required class="form-control"  id="exampleInputPassword1" placeholder="Password">
+          <input type="password" required class="form-control"  id="exampleInputPassword1" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
         </div>
         <div class="indicator">
           <span class="weak"></span>
@@ -56,7 +56,9 @@
             <label for="exampleInputNumber">Mobile Number</label>
             <input type="tele"  required class="form-control" id="mobile" placeholder="Mobile Number" >
           </div>
-        <button type="submit" class="btn btn-primary" id="sbtn">Submit</button>
+          <label for="vehicle1">I Agree to terms and conditions</label>
+          <input type="checkbox" id="terms" onclick="tick();"> <br>
+        <button type="submit" class="btn btn-primary" id="sbtn" disabled>Submit</button>
         
       </form>
       </div>
@@ -163,7 +165,7 @@
       passmsg1.classList.remove("valid");
       passmsg1.classList.add("invalid");
       flag = false;
-    }                                         
+    }
     // password lowercase check
     var lowerCaseLetters = /[a-z]/g;
       if(pass1.value.match(lowerCaseLetters)) {  
@@ -253,65 +255,40 @@
   mobilenum.onkeyup = function(){
     // Additional format check
     var addformat = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
-    var numformat = /^[0-9]{10,10}$/
-    var ch = /[^0-9\ -.]+/
-    if(mobilenum.value.match(numformat) || mobilenum.value.match(addformat)){
-      mobilemsg2.classList.remove("invalid");
-      mobilemsg2.classList.add("valid");
-    }
-    else{
-      mobilemsg2.classList.remove("valid");
-      mobilemsg2.classList.add("invalid");
-    }
-    if(mobilenum.value.match(ch)){
-      mobilemsg1.classList.remove("valid");
-      mobilemsg1.classList.add("invalid");
-    }
-    else{
+    var numformat = /^[0-9]10$/
+    if(mobilenum.value.match(addformat) || (mobilenum.value.match(numformat)) ){
       mobilemsg1.classList.remove("invalid");
       mobilemsg1.classList.add("valid");
+      mobilemsg2.classList.remove("invalid");
+      mobilemsg2.classList.add("valid");
+      falg = true;
     }
-    // if(mobilenum.value.match(addformat) || (mobilenum.value.match(numformat)) ){
-    //   mobilemsg1.classList.remove("invalid");
-    //   mobilemsg1.classList.add("valid");
-    //   mobilemsg2.classList.remove("invalid");
-    //   mobilemsg2.classList.add("valid");
-    //   falg = true;
-    // }
-    // else{
-    //   mobilemsg1.classList.remove("valid");
-    //   mobilemsg1.classList.add("invalid");
-    //   mobilemsg2.classList.remove("valid");
-    //   mobilemsg2.classList.add("invalid");
-    //   falg = false;
-    // }
-    
-    
-  }
-  function validation(){
-    //email validate
-    var emailregex = /^([A-Za-z0-9\-.]+)@([A-Za-z0-9]+).([a-z]{2,3})(.[a-z]{2,3})?$/;
-    if(!(emailregex.test(email.value))){
-        window.alert("Email Format incorrect");
-        return false;
-    }
-    //password validate
-    var passregex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/
-    if(!(passregex.test(pass1.value))){
-      window.alert("Password Format incorrect");
-      return false;
-    }
-    //mobile validation
-    var addformat = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
-    var numformat = /^[0-9]{10,10}$/
-    if(!(mobilenum.value.match(addformat) || (mobilenum.value.match(numformat)))){
-      window.alert("!incorrect Mobile Number Format! Accepted Formats are: xxx-xxx-xxxx , xxx.xxx.xxxx , xxx xxx xxxx , xxxxxxxxxx")
-      return false;
-      
+    else{
+      mobilemsg1.classList.remove("valid");
+      mobilemsg1.classList.add("invalid");
+      mobilemsg2.classList.remove("valid");
+      mobilemsg2.classList.add("invalid");
+      falg = false;
     }
     
     
   }
-  
+  function tick(){
+    if (checkbox.checked == true){
+      buttoncheck();
+      } 
+    else {
+      sbtn.disabled = true;
+  }
+  }
+  // function to enable button after succesful form validation
+  function buttoncheck(){
+    if(flag == true){
+        sbtn.disabled = false;
+      }
+      else{
+        sbtn.disabled = true;
+      }
+  }
   
 </script>
