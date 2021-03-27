@@ -127,7 +127,7 @@
     document.getElementById("emailval").style.display = "none"; 
   }
   email.onkeyup = function(){
-    var regex = /^([A-Za-z0-9\-.]+)@([A-Za-z0-9]+).([a-z]{2,3})(.[a-z]{2,3})?$/;
+    var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,3})+$/;
     if(regex.test(email.value)){
       emailval.classList.remove("invalid");
       emailval.classList.add("valid");
@@ -314,7 +314,7 @@
   }
   function validation(){
     //email validate
-    var emailregex = /^([A-Za-z0-9\-.]+)@([A-Za-z0-9]+).([a-z]{2,3})(.[a-z]{2,3})?$/;
+    var emailregex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,3})+$/;
     if(!(emailregex.test(email.value))){
         window.alert("Email Format incorrect");
         return false;
