@@ -38,7 +38,7 @@
     <!-- Signup form start -->
     <div class="row">
     <div class="col-lg-8">
-    <form class="form rounded-lg bg-gradient-dark" action="./validation.html" onsubmit="return validation();" style="padding: 10px;">
+    <form class="form rounded-lg bg-gradient-dark" action="./validation.html" style="padding: 10px;">
         <div class="form-group col-3 mb-2" style="width: 90%;">
           <label for="exampleInputEmail1">Email address</label>
           <input type="email" required class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
@@ -60,7 +60,7 @@
             <label for="exampleInputNumber">Mobile Number</label>
             <input type="tele"  required class="form-control" id="mobile" placeholder="Mobile Number" >
           </div>
-        <button type="submit" class="btn btn-primary" id="sbtn">Submit</button>
+        <button type="submit" class="btn btn-primary" disabled id="sbtn">Submit</button>
         
       </form>
       </div>
@@ -295,52 +295,20 @@
       mobilemsg1.classList.remove("invalid");
       mobilemsg1.classList.add("valid");
     }
-    // if(mobilenum.value.match(addformat) || (mobilenum.value.match(numformat)) ){
-    //   mobilemsg1.classList.remove("invalid");
-    //   mobilemsg1.classList.add("valid");
-    //   mobilemsg2.classList.remove("invalid");
-    //   mobilemsg2.classList.add("valid");
-    //   falg = true;
-    // }
-    // else{
-    //   mobilemsg1.classList.remove("valid");
-    //   mobilemsg1.classList.add("invalid");
-    //   mobilemsg2.classList.remove("valid");
-    //   mobilemsg2.classList.add("invalid");
-    //   falg = false;
-    // }
     
     
   }
-  function validation(){
-    //email validate
-    var emailregex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,3})+$/;
-    if(!(emailregex.test(email.value))){
-        window.alert("Email Format incorrect");
-        return false;
+  var intervalId = window.setInterval(function(){
+        submitcheck();
+        }, 100);
+  function submitcheck(){
+    if(emailmsg.classList.contains("valid") && passmsg1.classList.contains("valid") && passmsg2.classList.contains("valid") && passmsg3.classList.contains("valid") && passmsg4.classList.contains("valid") && passmsg5.classList.contains("valid") && mobilemsg1.classList.contains("valid") && mobilemsg2.classList.contains("valid")){
+      sbtn.disabled = false;
+      }
+    else{
+      sbtn.disabled = true;
+      }
     }
-    //password validate
-    var passregex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/
-    if(!(passregex.test(pass1.value))){
-      window.alert("Password Format incorrect");
-      return false;
-    }
-    if(pass1.value!=pass2.value){
-      window.alert("Passwords do not match");
-      return false;
-    }
-    //mobile validation
-    var addformat = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
-    var numformat = /^[0-9]{10,10}$/
-    if(!(mobilenum.value.match(addformat) || (mobilenum.value.match(numformat)))){
-      window.alert("!incorrect Mobile Number Format! Accepted Formats are: xxx-xxx-xxxx , xxx.xxx.xxxx , xxx xxx xxxx , xxxxxxxxxx")
-      return false;
-      
-    }
-
-    
-    
-  }
   
   
 </script>
