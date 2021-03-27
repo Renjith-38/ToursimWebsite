@@ -47,6 +47,10 @@
           <label for="exampleInputPassword1">Password</label>
           <input type="password" required class="form-control"  id="exampleInputPassword1" placeholder="Password">
         </div>
+        <div class="form-group col-3 mb-2" style="width: 90%;">
+          <label for="exampleInputPassword2"> Confirm Password</label>
+          <input type="password" required class="form-control"  id="exampleInputPassword2" placeholder="Password">
+        </div>
         <div class="indicator">
           <span class="weak"></span>
           <span class="medium"></span>
@@ -69,6 +73,7 @@
           <p class="invalid" id ="passval4" style="display: none;"> Minumum 1 numner </p>
           <p class="invalid" id="mobileval1" style="display: none;"> Must contain numbers only </p>
           <p class="invalid" id="mobileval2" style="display: none;"> 10 digit Mobile Number </p>
+          <p class="invalid" id="passval5" style="display: none;"> Passwords match </p>
         </div>
       </div>
       </div>
@@ -91,11 +96,13 @@
   var email = document.getElementById("email");
   var emailmsg = document.getElementById("emailval");
   var pass1 = document.getElementById("exampleInputPassword1");
+  var pass2 = document.getElementById("exampleInputPassword2");
   var mobilenum = document.getElementById("mobile");
   var passmsg1 = document.getElementById("passval1");
   var passmsg2 = document.getElementById("passval2");
   var passmsg3 = document.getElementById("passval3");
   var passmsg4 = document.getElementById("passval4");
+  var passmsg5 = document.getElementById("passval5");
   var mobilemsg1 = document.getElementById("mobileval1");
   var mobilemsg2 = document.getElementById("mobileval2");
   const indicator = document.querySelector(".indicator");
@@ -235,9 +242,26 @@
       }
       
       // password strength validation end
+  } 
+  //confirm password
+  pass2.onfocus = function(){
+    document.getElementById("message").style.display = "block";
+    passmsg5.style.display = "block";
   }
-  
-
+  pass2.onblur = function(){
+    document.getElementById("message").style.display = "none";
+    passmsg5.style.display = "none";
+  }
+  pass2.onkeyup = function(){
+    if(pass1.value == pass2.value){
+      passmsg5.classList.remove("invalid");
+      passmsg5.classList.add("valid");
+    } 
+    else{
+      passmsg5.classList.remove("valid");
+      passmsg5.classList.add("invalid");
+    }
+  }
   // Mobile number validation start
   mobilenum.onfocus = function(){
     document.getElementById("message").style.display = "block";
@@ -301,6 +325,10 @@
       window.alert("Password Format incorrect");
       return false;
     }
+    if(pass1.value!=pass2.value){
+      window.alert("Passwords do not match");
+      return false;
+    }
     //mobile validation
     var addformat = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
     var numformat = /^[0-9]{10,10}$/
@@ -309,6 +337,7 @@
       return false;
       
     }
+
     
     
   }
